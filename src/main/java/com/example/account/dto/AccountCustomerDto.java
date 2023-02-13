@@ -15,4 +15,5 @@ public class AccountCustomerDto {
         this.name = name;
         this.surname = surname;
     }
+
 }

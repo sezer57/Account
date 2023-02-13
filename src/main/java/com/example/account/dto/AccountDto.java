@@ -10,13 +10,17 @@ import java.util.Set;
 public class AccountDto {
     String id;
     BigDecimal balance;
-    CustomerDto accountCustomerDto;
+    AccountCustomerDto customer ;
     Set<TransactionDto> transactions;
 
-    public AccountDto(String id, BigDecimal balance, com.example.account.dto.AccountCustomerDto accountCustomerDto, Set<TransactionDto> transactions) {
+    public AccountDto(String id,
+                      BigDecimal balance,
+                      AccountCustomerDto customer,
+                      Set<TransactionDto> transactions) {
+
         this.id = id;
         this.balance = balance;
-        accountCustomerDto = accountCustomerDto;
+        this.customer = customer;
         this.transactions = transactions;
     }
 

@@ -13,4 +13,11 @@ public class CustomerAccountDto {
     BigDecimal balance;
     Set<TransactionDto> transactions;
 
+    public CustomerAccountDto(String id,
+                              BigDecimal balance,
+                              Set<TransactionDto> transactions) {
+        this.id = id;
+        this.balance = balance;
+        this.transactions = transactions;
+    }
 }

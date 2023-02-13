@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ public class Customer {
     String name;
     String surname;
 
-    @OneToMany(mappedBy = "customer",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer",fetch = FetchType.EAGER)
     Set<Account> accounts;
 
     public Customer() {
@@ -45,11 +46,11 @@ public class Customer {
     public int hashCode() {
         return Objects.hash(id, name, surname);
     }
-    public  Customer(String id, String name, String surname, Set<Account> accounts) {
-        this.id = id;
+    public  Customer(String name, String surname, Set<Account> accounts) {
+        this.id = "";
         this.name = name;
         this.surname = surname;
-        this.accounts = accounts;
+        this.accounts = new HashSet<>();
     }
 
 
