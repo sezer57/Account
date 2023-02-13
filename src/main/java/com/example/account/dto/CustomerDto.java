@@ -1,7 +1,11 @@
 package com.example.account.dto;
 
-import java.util.Set;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.Set;
+@Getter
+@Setter
 public class CustomerDto {
     String id;
     String name;

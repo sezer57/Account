@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 public class AccountDtoConverter {
 
     private final CustomerDtoConverter customerDtoConverter;
-    private final transactionDtoConverter  transactionDtoConverter;
+    private final TransactionDtoConverter  transactionDtoConverter;
 
-    public AccountDtoConverter(CustomerDtoConverter customerDtoConverter, com.example.account.dto.transactionDtoConverter transactionDtoConverter) {
+    public AccountDtoConverter(CustomerDtoConverter customerDtoConverter, TransactionDtoConverter transactionDtoConverter) {
         this.customerDtoConverter = customerDtoConverter;
         this.transactionDtoConverter = transactionDtoConverter;
     }

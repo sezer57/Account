@@ -1,8 +1,11 @@
 package com.example.account.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Objects;
 import java.util.Set;
@@ -10,17 +13,24 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+
+@Table(name = "customer")
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private String id;
 
     String name;
     String surname;
 
     @OneToMany(mappedBy = "customer",fetch = FetchType.LAZY)
     Set<Account> accounts;
+
+    public Customer() {
+
+    }
 
 
     @Override
@@ -35,4 +45,12 @@ public class Customer {
     public int hashCode() {
         return Objects.hash(id, name, surname);
     }
+    public  Customer(String id, String name, String surname, Set<Account> accounts) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.accounts = accounts;
+    }
+
+
 }

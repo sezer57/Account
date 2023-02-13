@@ -3,26 +3,35 @@ package com.example.account.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
+import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Getter
 @Setter
+@Table(name = "account")
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private String id;
 
-    int balance;
+    BigDecimal balance;
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id" , nullable = false)
     Customer customer;
 
-    @OneToMany(mappedBy = "account",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "account",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     Set<Transaction> transactions;
+
+    public Account() {
+
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -36,4 +45,13 @@ public class Account {
     public int hashCode() {
         return Objects.hash(id, balance, customer);
     }
+
+    public Account(BigDecimal balance, Customer customer) {
+        this.id="";
+        this.balance = balance;
+        this.customer = customer;
+        this.transactions=new HashSet<>();
+    }
+
+
 }
